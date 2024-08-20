@@ -4,42 +4,297 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <title>Portifolio Website</title>
+    <title>Portfólio Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            border: none;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            width: 100%;
+            height: 100vh;
+            overflow-x: hidden;
+            background-color: black;
+            color: white;
+        }
+        /* Tela de introdução */
+        .intro-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            text-align: center;
+        }
+        .intro-screen h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .intro-screen button {
+            padding: 1rem 2rem;
+            font-size: 1.5rem;
+            color: white;
+            background-color: #b7b7b7;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .intro-screen button:hover {
+            background-color: #a0a0a0;
+        }
+        /* Estilo principal */
+        .hidden {
+            display: none;
+        }
+        header {
+            margin-top: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 9%;
+            background-color: transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+        .logo {
+            font-size: 3rem;
+            color: #b7b7b7;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.5s ease;
+        }
+        .logo:hover {
+            transform: scale(1.1);
+        }
+        nav a {
+            font-size: 1.8rem;
+            color: white;
+            margin-left: 4rem;
+            font-weight: 500;
+            transition: 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        nav a:hover,
+        nav a:active {
+            color: #b7b7b7;
+            border-bottom: 3px solid #b7b7b7;
+        }
+        section {
+            min-height: 100vh;
+            padding: 5rem 9%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .home {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8rem;
+            background-color: black;
+        }
+        .home-content h1 {
+            font-size: 6rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        span {
+            color: #b7b7b7;
+        }
+        .home-content h3 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        .home-content p {
+            font-size: 1.6rem;
+        }
+        .home-img {
+            border-radius: 50%;
+            position: relative;
+            width: 40vw;
+            border-radius: 50%;
+            box-shadow: 0 0 25px #b7b7b7;
+            cursor: pointer;
+            transition: 0.2s linear;
+        }
+        .home-img img {
+            width: 100%;
+            border-radius: 50%;
+        }
+        .social-icons a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 4rem;
+            height: 4rem;
+            background-color: transparent;
+            border: 0.2rem solid #b7b7b7;
+            font-size: 2rem;
+            border-radius: 50%;
+            margin: 3rem 1.5rem;
+            transition: 0.3s ease;
+            color: #b7b7b7;
+        }
+        .social-icons a:hover {
+            color: black;
+            transform: scale(1.3) translate(-5px);
+            background-color: #b7b7b7;
+            box-shadow: 0 0 25px #b7b7b7;
+        }
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.8rem;
+            background-color: black;
+            border-radius: 4rem;
+            font-size: 1.6rem;
+            color: #b7b7b7;
+            letter-spacing: 0.3rem;
+            font-weight: 600;
+            border: 2px solid #b7b7b7;
+            transition: 0.3s ease;
+            cursor: pointer;
+        }
+        .btn:hover {
+            transform: scale(1.03);
+            background-color: #b7b7b7;
+            color: black;
+            box-shadow: 0 0 25px #b7b7b7;
+        }
+        /* Animação de texto */
+        .typing-text {
+            font-size: 34px;
+            font-weight: 600;
+            min-width: 280px;
+            position: relative;
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        .typing-text::after {
+            content: "|";
+            animation: blink 0.7s infinite;
+            position: absolute;
+            right: 0;
+        }
+        @keyframes blink {
+            0%, 50% {
+                opacity: 1;
+            }
+            50.1%, 100% {
+                opacity: 0;
+            }
+        }
+        @keyframes words {
+            0%, 25% {
+                content: "Web Developer";
+            }
+            26%, 50% {
+                content: "Web Designer";
+            }
+            51%, 75% {
+                content: "Editor de Vídeos";
+            }
+            76%, 100% {
+                content: "Script Writer";
+            }
+        }
+        .typing-text span::before {
+            content: "Web Developer";
+            animation: words 20s infinite;
+        }
+        @media (max-width: 1000px) {
+            .home {
+                gap: 4rem;
+            }
+        }
+        @media (max-width: 995px) {
+            .home {
+                flex-direction: column;
+                margin: 5rem 4rem;
+            }
+            .home-content h3 {
+                font-size: 2.5rem;
+            }
+            .home-content h1 {
+                font-size: 5rem;
+            }
+            .home-img {
+                width: 60vw;
+                margin-top: 4rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <a href="#"class= "logo">Diego</a>
+    <!-- Tela de introdução -->
+    <div class="intro-screen" id="introScreen">
+        <div>
+            <h1>Bem-vindo ao meu portfólio!</h1>
+            <button onclick="enterSite()">Clique para entrar</button>
+        </div>
+    </div>
 
+    <!-- Bloco de áudio escondido -->
+    <audio id="backgroundAudio">
+        <source src="GLORY.mp3" type="audio/mpeg" />
+        Seu navegador não suporta o elemento de áudio. Aqui está um
+        <a href="GLORY.mp3">link para o áudio</a> em vez disso.
+    </audio>
+
+    <!-- Conteúdo principal -->
+    <header class="hidden">
+        <a href="#" class="logo">Diego</a>
         <nav>
-            <a href="#"class= "active">Home</a>
-            <a href="#" >Serviços</a>
-            <a href="#" >Habilidades </a>
-            <a href="#" >Experiencia</a>
-            <a href="#" >Contato</a>
+            <a href="#" class="active">Home</a>
+            <a href="#">Serviços</a>
+            <a href="#">Habilidades</a>
+            <a href="#">Experiência</a>
+            <a href="#">Contato</a>
         </nav>
     </header>
-    <section class="home">
+    <section class="home hidden">
         <div class="home-img">
             <img src="Frontman.gif" alt="">
         </div>
         <div class="home-content">
-            <h1>Eu,sou <span> Diego</span> </h1>
+            <h1>Eu, sou <span>Diego</span></h1>
             <h3 class="typing-text"><span></span></h3>
-            <p>Faça como um programador. Quando tudo está errado e confuso, apague tudo e recomece do zero.
-
-            </p>
+            <p>Faça como um programador. Quando tudo está errado e confuso, apague tudo e recomece do zero.</p>
             <div class="social-icons">
-                <div class="social-icons">
-                    <a href="https://www.instagram.com/dieguinho.dc" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/Dieguinhoodev" target="_blank"><i class="fab fa-github"></i></a>
-                </div>
-                
+                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/Dieguinhoodev" target="_blank"><i class="fab fa-github"></i></a>
             </div>
-            <a href="#"class="btn">Hire me</a>
+            <a href="#" class="btn">Hire me</a>
         </div>
     </section>
+
+    <script>
+        function enterSite() {
+            document.getElementById('introScreen').style.display = 'none';
+            document.querySelector('header').classList.remove('hidden');
+            document.querySelector('.home').classList.remove('hidden');
+            document.getElementById('backgroundAudio').play();
+        }
+    </script>
 </body>
 </html>
