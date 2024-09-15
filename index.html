@@ -41,19 +41,6 @@
             font-size: 3rem;
             margin-bottom: 20px;
         }
-        .intro-screen button {
-            padding: 1rem 2rem;
-            font-size: 1.5rem;
-            color: white;
-            background-color: #b7b7b7;
-            border: none;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .intro-screen button:hover {
-            background-color: #a0a0a0;
-        }
         /* Estilo principal */
         .hidden {
             display: none;
@@ -244,15 +231,14 @@
 </head>
 <body>
     <!-- Tela de introdução -->
-    <div class="intro-screen" id="introScreen">
+    <div class="intro-screen hidden" id="introScreen">
         <div>
             <h1>Bem-vindo ao meu portfólio!</h1>
-            <button onclick="enterSite()">Clique para entrar</button>
         </div>
     </div>
 
     <!-- Conteúdo principal -->
-    <header class="hidden">
+    <header>
         <a href="#" class="logo">Diego</a>
         <nav>
             <a href="#" class="active">Home</a>
@@ -262,7 +248,7 @@
             <a href="#">Contato</a>
         </nav>
     </header>
-    <section class="home hidden">
+    <section class="home">
         <div class="home-img">
             <img src="Frontman.gif" alt="">
         </div>
@@ -279,13 +265,5 @@
             <a href="#" class="btn">Hire me</a>
         </div>
     </section>
-
-    <script>
-        function enterSite() {
-            document.getElementById('introScreen').style.display = 'none';
-            document.querySelector('header').classList.remove('hidden');
-            document.querySelector('.home').classList.remove('hidden');
-        }
-    </script>
 </body>
 </html>
